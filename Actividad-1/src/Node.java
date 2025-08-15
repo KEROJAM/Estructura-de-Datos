@@ -33,7 +33,7 @@ public class Node <E> {
         this.tail = tail;
     }
 
-    public int getData() {
+    public E getData() {
         return Data;
     }
 

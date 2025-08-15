@@ -1,49 +1,61 @@
 public class LinkedList {
+
     Node firstNode;
+
     public LinkedList() {
         this.firstNode = null;
     }
 
-    public LinkedList(Node firstNode){
+    public LinkedList(Node firstNode) {
         this.firstNode = firstNode;
     }
 
-    public LinkedList InsertNumber (int value){
-        Node newNode = new Node(value);
-        LinkedList List = new LinkedList();
-        if (List.firstNode == null ){
-            List.firstNode = newNode;
+    public void InsertContact(Contacto Contact) {
+        Node newNode = new Node(Contact);
+        if (this.firstNode == null) {
+            this.firstNode = newNode;
         } else {
-            Node last = List.firstNode;
-            while (last.next != null){
+            Node last = this.firstNode;
+            Node next = this.firstNode;
+            while (last.next != null) {
                 last = last.next;
+                next = last.next;
             }
-            last.next = newNode;
+            next.next = newNode;
         }
-        return List;
     }
 
-    public LinkedList InsertString (String value){
-        Node newNode = new Node(value);
-        LinkedList List = new LinkedList();
-        if (List.firstNode == null ){
-            List.firstNode = newNode;
+    public void InsertString(String Data){
+        Node newNode = new Node(Data);
+        if (this.firstNode == null) {
+            this.firstNode = newNode;
         } else {
-            Node last = List.firstNode;
-            while (last.next != null){
+            Node last = this.firstNode;
+            Node next = this.firstNode;
+            while (last.next != null) {
                 last = last.next;
+                next = last.next;
             }
-            last.next = newNode;
+            next.next = newNode;
         }
-        return List;
     }
 
-    public static void printList(LinkedList List){
-        Node currNode = List.firstNode;
-        System.out.print("LinkedList: ");
-        while (currNode != null){
-            System.out.print(currNode.Data + " ");
-            currNode = currNode.next;
+    public void printList(LinkedList List, String FlowList) {
+        switch (FlowList) {
+            case "-->":
+                Node currNode = List.firstNode;
+                while (currNode != null) {
+                    System.out.print(currNode.Data + FlowList);
+                    currNode = currNode.next;
+                }
+            case "<--":
+                Node lastNode = List.firstNode.tail;
+                while (lastNode.last != null) {
+                    System.out.print(lastNode.Data + FlowList);
+                    lastNode = lastNode.last;
+                }
+            case "o":
+
         }
     }
 
