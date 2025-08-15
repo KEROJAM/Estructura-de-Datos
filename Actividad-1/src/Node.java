@@ -1,25 +1,47 @@
-public class Node {
-    public int Number;
-    private Node next;
+public class Node <E> {
+    public E Data;
+    protected Node head;
+    protected Node next;
+    protected Node last;
+    protected Node tail;
 
-    public Node (int valNumber) {
-        this.Number = valNumber;
+    public Node (E valData) {
+        this.Data = valData;
+        this.head = null;
         this.next = null;
+        this.last = null;
+        this.tail = null;
     }
 
-    public void setNumber(int number) {
-        Number = number;
+    public void setData(E valData) {
+        Data = valData;
+    }
+
+    public void setHead(Node head) {
+        this.head = head;
     }
 
     public void setNext(Node next) {
         this.next = next;
     }
 
-    public int getNumber() {
-        return Number;
+    public void setLast(Node last){
+        this.last = last;
+    }
+
+    public void setTail(Node tail) {
+        this.tail = tail;
+    }
+
+    public int getData() {
+        return Data;
     }
 
     public Node getNext() {
         return next;
+    }
+
+    public Node getLast() {
+        return last;
     }
 }
