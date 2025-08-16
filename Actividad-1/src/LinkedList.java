@@ -73,6 +73,9 @@ public class LinkedList {
                 Node currNode = this.firstNode;
                 while (currNode.next != null) {
                     System.out.print(currNode.Data + FlowList);
+                    System.out.println(currNode);
+                    System.out.println(currNode.next);
+                    System.out.println(currNode.last);
                     currNode = currNode.next;
                 }
                 System.out.print(currNode.Data);

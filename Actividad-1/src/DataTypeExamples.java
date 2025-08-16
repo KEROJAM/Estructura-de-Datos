@@ -4,15 +4,17 @@ public class DataTypeExamples {
         SecuencialEjem.InsertString("B");
         SecuencialEjem.InsertString("C");
         SecuencialEjem.InsertString("D");
-        SecuencialEjem.InsertString("E");
-        SecuencialEjem.InsertString("F");
-        System.out.print("Sequencial: ");
+        System.out.print("Secuencial: ");
         SecuencialEjem.printList("-->" );
         System.out.println();
         System.out.print("Doble: ");
-        SecuencialEjem.printList("-->" );
+        LinkedList DobleEjem = new LinkedList(new Node("1"));
+        DobleEjem.InsertString("2");
+        DobleEjem.InsertString("3");
+        DobleEjem.InsertString("4");
+        DobleEjem.printList("-->" );
         System.out.println();
-        SecuencialEjem.printList("<--");
+        DobleEjem.printList("<--");
         System.out.println("\nCircular:");
         SecuencialEjem.printList("o");
     }

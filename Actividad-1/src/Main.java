@@ -18,7 +18,7 @@ public class Main {
             String DireccionContacto = input.readLine();
             System.out.print("| Numero Telefonico:");
             int NumeroTelefonico = Integer.parseInt(input.readLine());
-            System.out.println("\n*------------------------------*");
+            System.out.println("*------------------------------*");
             if (times == 0) {
                 Secuencial.setFirstNode(new Node<>(new Contacto(NombreContacto, DireccionContacto, NumeroTelefonico)));
                 Doble.setFirstNode(new Node<>(new Contacto(NombreContacto, DireccionContacto, NumeroTelefonico)));
@@ -38,7 +38,7 @@ public class Main {
        System.out.print("Intruduce el nombre del contacto al que quieres eliminar:");
        String ConNombre = input.readLine();
        Node curContact = Secuencial.firstNode;
-       while (curContact.next != null){
+       while (curContact.next != null || curContact.next == null){
            if (curContact.Data.toString().contains(ConNombre)){
                curContact.last.setNext(curContact.next);
                System.out.println("Contacto eliminado");
