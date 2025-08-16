@@ -7,4 +7,12 @@ public class Contacto {
         this.Direccion = valDireccion;
         this.NumeroTel = valNumeroTel;
     }
+
+    public static boolean toString(Node firstNode) {
+        return false;
+    }
+    @Override
+    public String toString() {
+        return this.Nombre + "\n" + this.Direccion + "\n" + this.NumeroTel;
+    }
 }

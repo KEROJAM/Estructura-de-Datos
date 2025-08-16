@@ -10,20 +10,6 @@ public class LinkedList {
         this.firstNode = firstNode;
     }
 
-    /*public void InsertContact(Contacto Contact) {
-        Node newNode = new Node(Contact);
-        if (this.firstNode.next == null) {
-            this.firstNode = newNode;
-        } else {
-            Node last = this.firstNode;
-            Node next = this.firstNode;
-            while (last.next != null) {
-                last = last.next;
-                next = last.next;
-            }
-            next.next = newNode;
-        }
-    }*/
     public void InsertContact(Contacto Data){
         Node newNode = new Node(Data);
         int i = 0;
@@ -100,5 +86,8 @@ public class LinkedList {
             case "o":
                 break;
         }
+    }
+    public void setFirstNode(Node firstNode) {
+        this.firstNode = firstNode;
     }
 }

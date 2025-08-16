@@ -4,29 +4,43 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-    static LinkedList Secuencial;
-    static LinkedList Doble;
-    static LinkedList Circular;
+    static LinkedList Secuencial = new LinkedList();
+    static LinkedList Doble = new LinkedList();
+    static LinkedList Circular = new LinkedList();
 
-    public static void AgregarContacto() throws IOException {
-        System.out.println("Introduzca los siguientes elementos para agregar el contacto:");
-        System.out.print("Nombre:");
-        String NombreContacto = input.readLine();
-        System.out.print("Direccion:");
-        String DireccionContacto = input.readLine();
-        System.out.print("Numero Telefonico:");
-        int NumeroTelefonico = Integer.parseInt(input.readLine());
-        Secuencial = new LinkedList(new Node<>(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico)));
-        Doble = new LinkedList(new Node<>(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico)));
-        Circular = new LinkedList(new Node<>(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico)));
+    public static int AgregarContacto(int times) throws IOException {
+        //try {
+            System.out.println("Introduzca los siguientes elementos para agregar el contacto:");
+            System.out.print("Nombre:");
+            String NombreContacto = input.readLine();
+            System.out.print("Direccion:");
+            String DireccionContacto = input.readLine();
+            System.out.print("Numero Telefonico:");
+            int NumeroTelefonico = Integer.parseInt(input.readLine());
+            if (times == 0) {
+                Secuencial.setFirstNode(new Node<>(new Contacto(NombreContacto, DireccionContacto, NumeroTelefonico)));
+                Doble.setFirstNode(new Node<>(new Contacto(NombreContacto, DireccionContacto, NumeroTelefonico)));
+                Circular.setFirstNode(new Node<>(new Contacto(NombreContacto, DireccionContacto, NumeroTelefonico)));
+            } else {
+                Secuencial.InsertContact(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico));
+                Doble.InsertContact(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico));
+                Circular.InsertContact(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico));
+            }
+        /*} catch (Exception NumberFormatException){
+            System.out.println("El numero telefonico es muy largo ingrese solo 9 digitos");
+        }*/
+        times++;
+        return times;
     }
-
     public static void HacerOperaciones(){}
     public static void EliminarElementos(){}
-    public static void MostrarContactos(){}
+    public static void MostrarContactos(){
+        System.out.print(Contacto.toString(Secuencial.firstNode));
+    }
     public static void main(String[] args) throws IOException {
         boolean x = true;
         int[] Opciones = {1,2,3,4,5};
+        int Times = 0;
         LinkedList Secuencial = new LinkedList();
         LinkedList Doble = new LinkedList();
         LinkedList Circular = new LinkedList();
@@ -46,7 +60,7 @@ public class Main {
                     if (Opciones[i] == OpcionUsuario) {
                         switch (OpcionUsuario) {
                             case 1:
-                                AgregarContacto();
+                                Times = AgregarContacto(Times);
                                 break;
                             case 2:
                                 //EliminarContacto();

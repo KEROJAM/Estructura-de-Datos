@@ -5,7 +5,7 @@ public class Node <E> {
     protected Node last;
     protected Node tail;
 
-    public Node (E valData) {
+    public Node(E valData) {
         this.Data = valData;
         this.head = null;
         this.next = null;
@@ -25,7 +25,7 @@ public class Node <E> {
         this.next = next;
     }
 
-    public void setLast(Node last){
+    public void setLast(Node last) {
         this.last = last;
     }
 
@@ -34,14 +34,10 @@ public class Node <E> {
     }
 
     public E getData() {
-        return Data;
-    }
-
-    public Node getNext() {
-        return next;
-    }
-
-    public Node getLast() {
-        return last;
+        if (Data.getClass() == Contacto.class) {
+            return Data;
+        } else {
+            return Data;
+        }
     }
 }
