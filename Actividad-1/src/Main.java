@@ -15,31 +15,18 @@ public class Main {
         System.out.print("Direccion:");
         String DireccionContacto = input.readLine();
         System.out.print("Numero Telefonico:");
-        int NumeroTelefonico = input.read();
-        Secuencial.InsertContact(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico));
-        Doble.InsertContact(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico));
-        Circular.InsertContact(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico));
+        int NumeroTelefonico = Integer.parseInt(input.readLine());
+        Secuencial = new LinkedList(new Node<>(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico)));
+        Doble = new LinkedList(new Node<>(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico)));
+        Circular = new LinkedList(new Node<>(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico)));
     }
-    public static void MostrarEjemplos(){
-        LinkedList SecuencialEjem = new LinkedList(new Node("A"));
-        SecuencialEjem.InsertString("B");
-        SecuencialEjem.InsertString("C");
-        SecuencialEjem.InsertString("D");
-        System.out.print("Sequencial: ");
-        SecuencialEjem.printList(SecuencialEjem, "-->" );
-        System.out.println();
-        System.out.print("Doble: ");
-        SecuencialEjem.printList(SecuencialEjem, "-->" );
-        System.out.println();
-        SecuencialEjem.printList(SecuencialEjem, "<--");
-    }
+
     public static void HacerOperaciones(){}
-    public static void MostrarTipo(){}
     public static void EliminarElementos(){}
-    public static void Contactos(){}
+    public static void MostrarContactos(){}
     public static void main(String[] args) throws IOException {
         boolean x = true;
-        int[] Opciones = {1,2,3,4,5,6};
+        int[] Opciones = {1,2,3,4,5};
         LinkedList Secuencial = new LinkedList();
         LinkedList Doble = new LinkedList();
         LinkedList Circular = new LinkedList();
@@ -48,9 +35,8 @@ public class Main {
             System.out.println("| 1.- Agregar Contacto         |");
             System.out.println("| 2.- Eliminar Contacto        |");
             System.out.println("| 3.- Mostrar Contactos        |");
-            System.out.println("| 4.- Hacer Operaciones        |");
-            System.out.println("| 5.- Mostrar Ejemplos         |");
-            System.out.println("| 6.- Quit                     |");
+            System.out.println("| 4.- Mostrar Ejemplos         |");
+            System.out.println("| 5.- Quit                     |");
             System.out.println("*------------------------------*");
             System.out.print("Elija una Opcion:");
             ///try {
@@ -66,15 +52,12 @@ public class Main {
                                 //EliminarContacto();
                                 break;
                             case 3:
-                                //MostrarContactos();
+                                MostrarContactos();
                                 break;
                             case 4:
-                                HacerOperaciones();
+                                DataTypeExamples.MostrarEjemplos();
                                 break;
                             case 5:
-                                MostrarEjemplos();
-                                break;
-                            case 6:
                                 x = false;
                         }
                     /*} else if (i == (Opciones.length)-1 && Opciones[i] != OpcionUsuario) {
