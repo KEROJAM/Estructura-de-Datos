@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.InputMismatchException;
 
 public class Main {
     public static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
@@ -32,14 +33,13 @@ public class Main {
         times++;
         return times;
     }
-    public static void HacerOperaciones(){}
     public static void EliminarContacto() throws IOException {
        System.out.print("Intruduce el nombre del contacto al que quieres eliminar:");
        String ConNombre = input.readLine();
        Node curContact = Secuencial.firstNode;
        while (curContact.next != null){
            if (curContact.Data.toString().contains(ConNombre)){
-               curContact.last.next = curContact.next;
+               curContact.last.setNext(curContact.next);
                System.out.println("Contacto eliminado");
                break;
            } else {
@@ -47,9 +47,22 @@ public class Main {
            }
        }
     }
+    public static void BuscarContacto() throws IOException {
+        System.out.print("Introduce el nombre del contacto al que quieres buscar:");
+        String ConNombre = input.readLine();
+        Node curContact = Secuencial.firstNode;
+        while (curContact.next != null || curContact.next == null){
+            if (curContact.Data.toString().contains(ConNombre)){
+                System.out.println(curContact.Data.toString());
+                break;
+            } else {
+                curContact = curContact.next;
+            }
+        }
+    }
     public static void MostrarContactos(){
         Node currNode = Secuencial.firstNode;
-        while (currNode.next != null) {
+        while (currNode.next != null ) {
             System.out.print(currNode.Data.toString());
             System.out.println();
             currNode = currNode.next;
@@ -58,7 +71,7 @@ public class Main {
     }
     public static void main(String[] args) throws IOException {
         boolean x = true;
-        int[] Opciones = {1,2,3,4,5};
+        int[] Opciones = {1,2,3,4,5,6};
         int Times = 0;
         LinkedList Secuencial = new LinkedList();
         LinkedList Doble = new LinkedList();
@@ -67,9 +80,10 @@ public class Main {
             System.out.println("*----------* Menu *------------*");
             System.out.println("| 1.- Agregar Contacto         |");
             System.out.println("| 2.- Eliminar Contacto        |");
-            System.out.println("| 3.- Mostrar Contactos        |");
-            System.out.println("| 4.- Mostrar Ejemplos         |");
-            System.out.println("| 5.- Quit                     |");
+            System.out.println("| 3.- Buscar Contacto          |");
+            System.out.println("| 4.- Mostrar Contactos        |");
+            System.out.println("| 5.- Mostrar Ejemplos         |");
+            System.out.println("| 6.- Quit                     |");
             System.out.println("*------------------------------*");
             System.out.print("Elija una Opcion:");
             try {
@@ -85,16 +99,17 @@ public class Main {
                                 EliminarContacto();
                                 break;
                             case 3:
-                                MostrarContactos();
+                                BuscarContacto();
                                 break;
                             case 4:
-                                DataTypeExamples.MostrarEjemplos();
+                                MostrarContactos();
                                 break;
                             case 5:
+                                DataTypeExamples.MostrarEjemplos();
+                                break;
+                            case 6:
                                 x = false;
                         }
-                    } else if (i == (Opciones.length)-1 && Opciones[i] != OpcionUsuario) {
-                        System.out.println("Esa no es una opcion");
                     }
                 }
             } catch (Exception InputMismatchException) {

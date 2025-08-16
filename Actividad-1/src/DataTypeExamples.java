@@ -15,4 +15,6 @@ public class DataTypeExamples {
         SecuencialEjem.printList("<--");
         System.out.println();
     }
+
+    public static void HacerOperaciones(){}
 }

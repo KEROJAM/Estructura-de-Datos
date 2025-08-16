@@ -12,4 +12,7 @@ public class Contacto {
     public String toString() {
         return "| Nombre:" + Nombre + "\n| Direccion:" + Direccion + "\n| Numero Telefonico:" + NumeroTel;
     }
+    public String getNombre() {
+        return Nombre;
+    }
 }
