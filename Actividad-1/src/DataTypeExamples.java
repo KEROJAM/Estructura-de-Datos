@@ -4,8 +4,8 @@ public class DataTypeExamples {
         SecuencialEjem.InsertString("B");
         SecuencialEjem.InsertString("C");
         SecuencialEjem.InsertString("D");
-        SecuencialEjem.InsertString("F");
         SecuencialEjem.InsertString("E");
+        SecuencialEjem.InsertString("F");
         System.out.print("Sequencial: ");
         SecuencialEjem.printList("-->" );
         System.out.println();
@@ -13,7 +13,8 @@ public class DataTypeExamples {
         SecuencialEjem.printList("-->" );
         System.out.println();
         SecuencialEjem.printList("<--");
-        System.out.println();
+        System.out.println("\nCircular:");
+        SecuencialEjem.printList("o");
     }
 
     public static void HacerOperaciones(){}

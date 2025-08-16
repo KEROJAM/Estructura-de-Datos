@@ -34,7 +34,7 @@ public class LinkedList {
             currNode.setLast(lastNode);
             this.firstNode.setTail(newNode);
             this.firstNode.tail.setLast(lastNode);
-            newNode.setHead(this.firstNode);
+            this.firstNode.tail.setHead(this.firstNode);
         }
     }
 
@@ -63,6 +63,7 @@ public class LinkedList {
             this.firstNode.setTail(newNode);
             this.firstNode.tail.setLast(lastNode);
             newNode.setHead(this.firstNode);
+            this.firstNode.setHead(this.firstNode);
         }
     }
 
@@ -74,6 +75,7 @@ public class LinkedList {
                     System.out.print(currNode.Data + FlowList);
                     currNode = currNode.next;
                 }
+                System.out.print(currNode.Data);
                 break;
             case "<--":
                 Node tail = this.firstNode.tail;
@@ -84,6 +86,19 @@ public class LinkedList {
                 System.out.print(tail.Data + FlowList);
                 break;
             case "o":
+                Node CurrNode = this.firstNode;
+                while (CurrNode.next !=null){
+                    System.out.print(CurrNode.Data + " " + FlowList + " ");
+                    CurrNode = CurrNode.next;
+                }
+                System.out.print(CurrNode.Data + " " + FlowList + " ");
+                Node Head = this.firstNode.head;
+                while (Head.next !=null){
+                    System.out.print(Head.Data + " " +FlowList + " ");
+                    Head = Head.next;
+                }
+                System.out.print(CurrNode.Data);
+                System.out.println();
                 break;
         }
     }

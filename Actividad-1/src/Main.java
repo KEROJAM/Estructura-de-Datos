@@ -11,13 +11,14 @@ public class Main {
 
     public static int AgregarContacto(int times) throws IOException {
         try {
-            System.out.println("Introduzca los siguientes elementos para agregar el contacto:");
-            System.out.print("Nombre:");
+            System.out.println("| Introduzca los siguientes elementos para agregar el contacto:");
+            System.out.print("| Nombre:");
             String NombreContacto = input.readLine();
-            System.out.print("Direccion:");
+            System.out.print("| Direccion:");
             String DireccionContacto = input.readLine();
-            System.out.print("Numero Telefonico:");
+            System.out.print("| Numero Telefonico:");
             int NumeroTelefonico = Integer.parseInt(input.readLine());
+            System.out.println("\n*------------------------------*");
             if (times == 0) {
                 Secuencial.setFirstNode(new Node<>(new Contacto(NombreContacto, DireccionContacto, NumeroTelefonico)));
                 Doble.setFirstNode(new Node<>(new Contacto(NombreContacto, DireccionContacto, NumeroTelefonico)));
@@ -28,7 +29,7 @@ public class Main {
                 Circular.InsertContact(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico));
             }
         } catch (Exception NumberFormatException){
-            System.out.println("El numero telefonico es muy largo ingrese solo 9 digitos");
+            System.out.println("El numero telefonico tiene que ser un numero no puede ser una letra");
         }
         times++;
         return times;
@@ -64,7 +65,7 @@ public class Main {
         Node currNode = Secuencial.firstNode;
         while (currNode.next != null ) {
             System.out.print(currNode.Data.toString());
-            System.out.println();
+            System.out.println("\n*------------------------------*");
             currNode = currNode.next;
         }
         System.out.println(currNode.Data.toString());
@@ -85,10 +86,9 @@ public class Main {
             System.out.println("| 5.- Mostrar Ejemplos         |");
             System.out.println("| 6.- Quit                     |");
             System.out.println("*------------------------------*");
-            System.out.print("Elija una Opcion:");
+            System.out.print("| Elija una Opcion:");
             try {
                 int OpcionUsuario = Integer.parseInt(input.readLine());
-                System.out.println(OpcionUsuario);
                 for (int i = 0; i < Opciones.length; i++) {
                     if (Opciones[i] == OpcionUsuario) {
                         switch (OpcionUsuario) {
