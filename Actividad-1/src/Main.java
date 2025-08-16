@@ -9,7 +9,7 @@ public class Main {
     static LinkedList Circular = new LinkedList();
 
     public static int AgregarContacto(int times) throws IOException {
-        //try {
+        try {
             System.out.println("Introduzca los siguientes elementos para agregar el contacto:");
             System.out.print("Nombre:");
             String NombreContacto = input.readLine();
@@ -26,16 +26,35 @@ public class Main {
                 Doble.InsertContact(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico));
                 Circular.InsertContact(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico));
             }
-        /*} catch (Exception NumberFormatException){
+        } catch (Exception NumberFormatException){
             System.out.println("El numero telefonico es muy largo ingrese solo 9 digitos");
-        }*/
+        }
         times++;
         return times;
     }
     public static void HacerOperaciones(){}
-    public static void EliminarElementos(){}
+    public static void EliminarContacto() throws IOException {
+       System.out.print("Intruduce el nombre del contacto al que quieres eliminar:");
+       String ConNombre = input.readLine();
+       Node curContact = Secuencial.firstNode;
+       while (curContact.next != null){
+           if (curContact.Data.toString().contains(ConNombre)){
+               curContact.last.next = curContact.next;
+               System.out.println("Contacto eliminado");
+               break;
+           } else {
+               curContact = curContact.next;
+           }
+       }
+    }
     public static void MostrarContactos(){
-        System.out.print(Contacto.toString(Secuencial.firstNode));
+        Node currNode = Secuencial.firstNode;
+        while (currNode.next != null) {
+            System.out.print(currNode.Data.toString());
+            System.out.println();
+            currNode = currNode.next;
+        }
+        System.out.println(currNode.Data.toString());
     }
     public static void main(String[] args) throws IOException {
         boolean x = true;
@@ -53,7 +72,7 @@ public class Main {
             System.out.println("| 5.- Quit                     |");
             System.out.println("*------------------------------*");
             System.out.print("Elija una Opcion:");
-            ///try {
+            try {
                 int OpcionUsuario = Integer.parseInt(input.readLine());
                 System.out.println(OpcionUsuario);
                 for (int i = 0; i < Opciones.length; i++) {
@@ -63,7 +82,7 @@ public class Main {
                                 Times = AgregarContacto(Times);
                                 break;
                             case 2:
-                                //EliminarContacto();
+                                EliminarContacto();
                                 break;
                             case 3:
                                 MostrarContactos();
@@ -74,14 +93,13 @@ public class Main {
                             case 5:
                                 x = false;
                         }
-                    /*} else if (i == (Opciones.length)-1 && Opciones[i] != OpcionUsuario) {
+                    } else if (i == (Opciones.length)-1 && Opciones[i] != OpcionUsuario) {
                         System.out.println("Esa no es una opcion");
-                    }*/
                     }
                 }
-            /*} catch (Exception InputMismatchException) {
+            } catch (Exception InputMismatchException) {
                 System.out.println("Esa no es una opcion");
-            }*/
             }
         }
     }
+}

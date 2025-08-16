@@ -8,11 +8,8 @@ public class Contacto {
         this.NumeroTel = valNumeroTel;
     }
 
-    public static boolean toString(Node firstNode) {
-        return false;
-    }
     @Override
     public String toString() {
-        return this.Nombre + "\n" + this.Direccion + "\n" + this.NumeroTel;
+        return "| Nombre:" + Nombre + "\n| Direccion:" + Direccion + "\n| Numero Telefonico:" + NumeroTel;
     }
 }
