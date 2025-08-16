@@ -12,7 +12,7 @@ public class LinkedList {
 
     public void InsertContact(Contacto Contact) {
         Node newNode = new Node(Contact);
-        if (this.firstNode == null) {
+        if (this.firstNode.next == null) {
             this.firstNode = newNode;
         } else {
             Node last = this.firstNode;
@@ -27,16 +27,18 @@ public class LinkedList {
 
     public void InsertString(String Data){
         Node newNode = new Node(Data);
-        if (this.firstNode == null) {
-            this.firstNode = newNode;
+        if (this.firstNode.next == null) {
+            this.firstNode.next = newNode;
         } else {
             Node last = this.firstNode;
-            Node next = this.firstNode;
-            while (last.next != null) {
-                last = last.next;
-                next = last.next;
+            Node next = this.firstNode.next;
+            while (next.next != null) {
+                next.last = next.next;
+                next = next.next;
+                this.firstNode.tail = last;
             }
             next.next = newNode;
+            this.firstNode.tail = newNode;
         }
     }
 
@@ -45,15 +47,19 @@ public class LinkedList {
             case "-->":
                 Node currNode = List.firstNode;
                 while (currNode != null) {
+                    System.out.println(currNode.last);
                     System.out.print(currNode.Data + FlowList);
                     currNode = currNode.next;
                 }
+                break;
             case "<--":
-                Node lastNode = List.firstNode.tail;
-                while (lastNode.last != null) {
-                    System.out.print(lastNode.Data + FlowList);
-                    lastNode = lastNode.last;
+                Node tail = List.firstNode.tail;
+                while (tail.last != null) {
+                    System.out.print(tail.Data + FlowList);
+                    tail = tail.last;
                 }
+                System.out.println("test");
+                break;
             case "o":
 
         }

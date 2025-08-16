@@ -27,8 +27,10 @@ public class Main {
         SecuencialEjem.InsertString("D");
         System.out.print("Sequencial: ");
         SecuencialEjem.printList(SecuencialEjem, "-->" );
-        System.out.println("Doble: ");
+        System.out.println();
+        System.out.print("Doble: ");
         SecuencialEjem.printList(SecuencialEjem, "-->" );
+        System.out.println();
         SecuencialEjem.printList(SecuencialEjem, "<--");
     }
     public static void HacerOperaciones(){}
@@ -51,7 +53,7 @@ public class Main {
             System.out.println("| 6.- Quit                     |");
             System.out.println("*------------------------------*");
             System.out.print("Elija una Opcion:");
-            try {
+            ///try {
                 int OpcionUsuario = Integer.parseInt(input.readLine());
                 System.out.println(OpcionUsuario);
                 for (int i = 0; i < Opciones.length; i++) {
@@ -75,13 +77,14 @@ public class Main {
                             case 6:
                                 x = false;
                         }
-                    } else if (i == (Opciones.length)-1 && Opciones[i] != OpcionUsuario) {
+                    /*} else if (i == (Opciones.length)-1 && Opciones[i] != OpcionUsuario) {
                         System.out.println("Esa no es una opcion");
+                    }*/
                     }
                 }
-            } catch (Exception InputMismatchException) {
+            /*} catch (Exception InputMismatchException) {
                 System.out.println("Esa no es una opcion");
-            }
+            }*/
             }
         }
     }
