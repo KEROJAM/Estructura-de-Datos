@@ -35,21 +35,46 @@ public class Main {
         return times;
     }
     public static void EliminarContacto() throws IOException {
-       System.out.print("Intruduce el nombre del contacto al que quieres eliminar:");
+       System.out.print("| Intruduce el nombre del contacto al que quieres eliminar:");
        String ConNombre = input.readLine();
        Node curContact = Secuencial.firstNode;
        while (curContact.next != null || curContact.next == null){
            if (curContact.Data.toString().contains(ConNombre)){
                curContact.last.setNext(curContact.next);
-               System.out.println("Contacto eliminado");
+               System.out.println("| Contacto eliminado");
                break;
            } else {
                curContact = curContact.next;
            }
        }
     }
+    public static void ModificarContacto() throws IOException {
+        System.out.print("| Introduce el nombre del contacto al que quieres modificar: ");
+        String ModNomb = input.readLine();
+        Node next = null;
+        Node last = null;
+        Node head = null;
+        Node tail = null;
+        Node curContact = Secuencial.firstNode;
+        while (curContact.next != null || curContact.next == null){
+            if (curContact.Data.toString().contains(ModNomb)){
+                System.out.println("| Introduzca los siguientes elementos para modificar el contacto:");
+                System.out.print("| Nombre:");
+                String NombreContacto = input.readLine();
+                System.out.print("| Direccion:");
+                String DireccionContacto = input.readLine();
+                System.out.print("| Numero Telefonico:");
+                int NumeroTelefonico = Integer.parseInt(input.readLine());
+                curContact.setData(new Contacto(NombreContacto, DireccionContacto,NumeroTelefonico));
+                System.out.println("| Contacto eliminado");
+                break;
+            } else {
+                curContact = curContact.next;
+            }
+        }
+    }
     public static void BuscarContacto() throws IOException {
-        System.out.print("Introduce el nombre del contacto al que quieres buscar:");
+        System.out.print("| Introduce el nombre del contacto al que quieres buscar:");
         String ConNombre = input.readLine();
         Node curContact = Secuencial.firstNode;
         while (curContact.next != null || curContact.next == null){
@@ -72,7 +97,7 @@ public class Main {
     }
     public static void main(String[] args) throws IOException {
         boolean x = true;
-        int[] Opciones = {1,2,3,4,5,6};
+        int[] Opciones = {1,2,3,4,5,6,7};
         int Times = 0;
         LinkedList Secuencial = new LinkedList();
         LinkedList Doble = new LinkedList();
@@ -82,12 +107,13 @@ public class Main {
             System.out.println("| 1.- Agregar Contacto         |");
             System.out.println("| 2.- Eliminar Contacto        |");
             System.out.println("| 3.- Buscar Contacto          |");
-            System.out.println("| 4.- Mostrar Contactos        |");
-            System.out.println("| 5.- Mostrar Ejemplos         |");
-            System.out.println("| 6.- Quit                     |");
+            System.out.println("| 4.- Modificar Contactos      |");
+            System.out.println("| 5.- Mostrar Contactos        |");
+            System.out.println("| 6.- Mostrar Ejemplos         |");
+            System.out.println("| 7.- Quit                     |");
             System.out.println("*------------------------------*");
             System.out.print("| Elija una Opcion:");
-            try {
+            //try {
                 int OpcionUsuario = Integer.parseInt(input.readLine());
                 for (int i = 0; i < Opciones.length; i++) {
                     if (Opciones[i] == OpcionUsuario) {
@@ -102,19 +128,22 @@ public class Main {
                                 BuscarContacto();
                                 break;
                             case 4:
-                                MostrarContactos();
+                                ModificarContacto();
                                 break;
                             case 5:
-                                DataTypeExamples.MostrarEjemplos();
+                                MostrarContactos();
                                 break;
                             case 6:
+                                DataTypeExamples.MostrarEjemplos();
+                                break;
+                            case 7:
                                 x = false;
                         }
                     }
                 }
-            } catch (Exception InputMismatchException) {
+            /*} catch (Exception InputMismatchException) {
                 System.out.println("Esa no es una opcion");
-            }
+            }*/
         }
     }
 }

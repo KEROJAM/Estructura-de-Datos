@@ -17,6 +17,29 @@ public class DataTypeExamples {
         DobleEjem.printList("<--");
         System.out.println("\nCircular:");
         SecuencialEjem.printList("o");
+        LinkedList SumaEjem = new LinkedList(new Node("1"));
+        SumaEjem.InsertString("2");
+        SumaEjem.InsertString("3");
+        SumaEjem.InsertString("4");
+        System.out.println("Se van a sumar el primer y tercer valor");
+        Node CurrNode = SumaEjem.firstNode;
+        int i = 0;
+        Node u = null;
+        Node o = null;
+        while (CurrNode.next != null){
+            if (i == 0){
+                u = CurrNode.Data;
+                CurrNode = CurrNode.next;
+                i++;
+            } else if (i == 3) {
+                o = CurrNode.Data;
+                i++;
+            } else {
+                CurrNode = CurrNode.next;
+                i++;
+            }
+        }
+        System.out.print(Integer.parseInt(u) + Integer.parseInt(o));
     }
 
     public static void HacerOperaciones(){}
