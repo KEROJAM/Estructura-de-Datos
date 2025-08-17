@@ -102,6 +102,22 @@ public class LinkedList {
                 break;
         }
     }
+    public void Addition(){
+        Node CurrNode = this.firstNode;
+        int i = 0;
+        String u = "";
+        String o = "";
+        while (CurrNode.next != null){
+            if (i == 0){
+                u = CurrNode.Data.toString();
+            } else if (i == 2) {
+                o = CurrNode.Data.toString();
+            }
+            i++;
+            CurrNode = CurrNode.next;
+        }
+        System.out.print(Integer.parseInt(u) + Integer.parseInt(o));
+    }
     public void setFirstNode(Node firstNode) {
         this.firstNode = firstNode;
     }
