@@ -5,41 +5,16 @@ import java.io.InputStreamReader;
 public class LinkedList {
 
     Node firstNode;
+    int ListSize;
 
     public LinkedList() {
         this.firstNode = null;
+        this.ListSize = 0;
     }
 
     public LinkedList(Node firstNode) {
         this.firstNode = firstNode;
-    }
-
-    public void InsertObject(Object Data){
-        Node newNode = new Node(Data);
-        int i = 0;
-        if (this.firstNode.next == null) {
-            this.firstNode.next = newNode;
-        } else {
-            Node currNode = this.firstNode;
-            Node lastNode = this.firstNode;
-            while (currNode.next != null) {
-                currNode = currNode.next;
-                if (i == 0) {
-                    i++;
-                } else if (i == 1) {
-                    lastNode = lastNode.next;
-                    currNode.setLast(lastNode);
-                    i++;
-                } else {
-                    lastNode = lastNode.next;
-                }
-            }
-            currNode.setNext(newNode);
-            currNode.setLast(lastNode);
-            this.firstNode.setTail(newNode);
-            this.firstNode.tail.setLast(lastNode);
-            this.firstNode.tail.setHead(this.firstNode);
-        }
+        this.ListSize = 1;
     }
 
     public void InsertString(String Data){
@@ -47,6 +22,7 @@ public class LinkedList {
         int i = 0;
         if (this.firstNode.next == null) {
             this.firstNode.next = newNode;
+            this.ListSize++;
         } else {
             Node currNode = this.firstNode;
             Node lastNode = this.firstNode;
@@ -68,6 +44,7 @@ public class LinkedList {
             this.firstNode.tail.setLast(lastNode);
             newNode.setHead(this.firstNode);
             this.firstNode.setHead(this.firstNode);
+            this.ListSize++;
         }
     }
 
@@ -106,32 +83,7 @@ public class LinkedList {
                 break;
         }
     }
-    public void Addition(){
-        Node CurrNode = this.firstNode;
-        int i = 0;
-        String u = "";
-        String o = "";
-        while (CurrNode.next != null){
-            if (i == 0){
-                u = CurrNode.Data.toString();
-            } else if (i == 2) {
-                o = CurrNode.Data.toString();
-            }
-            i++;
-            CurrNode = CurrNode.next;
-        }
-        System.out.print(Integer.parseInt(u) + Integer.parseInt(o));
-    }
 
-    public int AgregarContacto(int times, String NombreContacto, String DireccionContacto, int NumeroTelefonico) throws IOException {
-        if (times == 0) {
-            setFirstNode(new Node<>(new Contacto(NombreContacto, DireccionContacto, NumeroTelefonico)));
-        } else {
-            InsertObject(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico));
-        }
-        times++;
-        return times;
-    }
 
     public void setFirstNode(Node firstNode) {
         this.firstNode = firstNode;

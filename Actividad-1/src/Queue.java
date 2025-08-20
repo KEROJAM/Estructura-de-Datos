@@ -1,52 +1,88 @@
-public class Queue <E> {
-    public static final int CAPACITY = 10000;
-    private E[] data;
-    private int size=0;
-    public Queue(){
-        data = (E[]) new Object[CAPACITY];
+public class Queue<E> {
+    private LinkedList processes;
+    private int size;
+
+    public Queue() {
+        this.processes = new LinkedList();
+        this.size = 0;
     }
 
-    public boolean isEmpty(){
-        return size==0;
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     public int size() {
-        return (this.size);
+        return this.size;
     }
 
-    public void push(E value){
-        this.data[this.size] = value;
+    // Enqueue - Agregar elemento al final de la cola (FIFO)
+    public void enqueue(E value) {
+        if (this.processes.firstNode == null) {
+            // Primer elemento
+            Node<E> newNode = new Node<>(value);
+            this.processes.firstNode = newNode;
+            this.processes.firstNode.setHead(newNode);
+            this.processes.firstNode.setTail(newNode);
+        } else {
+            // Agregar al final usando el metodo de LinkedList
+            this.processes.InsertString(value.toString());
+        }
         this.size++;
     }
 
-    public E pop() throws Exception{
-        E result = null;
-        if (this.isEmpty()){
-            throw  new Exception("La Cola esta vacia");
+    // Dequeue - Remover elemento del frente de la cola (FIFO)
+    public E dequeue() throws Exception {
+        if (this.isEmpty()) {
+            throw new Exception("La Cola esta vacia");
         }
 
-        result = this.data[0];
-        for (int i = 0; i < this.size-1; i++){
-            data[i] = data[i + 1];
+        E result = (E) this.processes.firstNode.Data;
+        
+        if (this.processes.firstNode.next == null) {
+            // Solo hay un elemento
+            this.processes.firstNode = null;
+        } else {
+            // Mover el primer nodo al siguiente
+            this.processes.firstNode = this.processes.firstNode.next;
         }
-        this.data[this.size] = null;
+        
         this.size--;
         return result;
     }
+
+    // Peek - Ver el primer elemento sin removerlo
     public E peek() throws Exception {
-        E result = null;
-        if (this.isEmpty()){
+        if (this.isEmpty()) {
             throw new Exception("La Cola esta Vacia");
         }
-        result = this.data[0];
-        return result;
+        return (E) this.processes.firstNode.Data;
     }
+
+    // Mostrar todos los elementos de la cola
     public void show() throws Exception {
-        if (this.isEmpty()){
+        if (this.isEmpty()) {
             throw new Exception("La Cola esta Vacia");
         }
-        for (int i = 0; i < this.size; i++){
-            System.out.println(this.data[i]);
+        
+        System.out.println("Procesos en la cola:");
+        Node current = this.processes.firstNode;
+        int position = 1;
+        
+        while (current != null) {
+            System.out.println("Proceso " + position + ": " + current.Data);
+            current = current.next;
+            position++;
         }
+    }
+
+    // Metodo adicional para obtener el número de procesos
+    public int getProcessCount() {
+        return this.size;
+    }
+
+    // Metodo para limpiar la cola
+    public void clear() {
+        this.processes.firstNode = null;
+        this.size = 0;
     }
 }

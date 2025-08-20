@@ -1,9 +1,10 @@
 public class Stack<E> {
     public static final int CAPACITY = 1000;
-    private E[] data;
-    private int size=0;
+    private LinkedList commands;
+    private int size = commands.ListSize;
+    
     public Stack(){
-        this.data = (E[])new Object[this.CAPACITY];
+        this.commands = new LinkedList();
     }
 
     public boolean isEmpty(){
@@ -15,27 +16,32 @@ public class Stack<E> {
     }
 
     public void push(E value){
-        this.data[this.size] = value;
+        // Create a new node and add it to the linked list
+        Node<E> newNode = new Node<>(value);
+        if (this.commands.firstNode == null) {
+            this.commands.setFirstNode(newNode);
+        } else {
+            newNode.setNext(this.commands.firstNode);
+            this.commands.setFirstNode(newNode);
+        }
         this.size++;
     }
 
     public E pop() throws Exception{
-        E result = null;
         if (this.isEmpty()){
             throw new Exception("La Pila esta Vacia");
         }
+        
+        E result = (E) this.commands.firstNode.getData();
+        this.commands.firstNode = this.commands.firstNode.next;
         this.size--;
-        result = this.data[this.size];
-        this.data[this.size] = null;
         return result;
     }
 
     public E peek() throws Exception{
-        E result = null;
         if (this.isEmpty()){
             throw new Exception("La Pila esta vacia");
         }
-        result = this.data[0];
-        return result;
+        return (E) this.commands.firstNode.getData();
     }
 }
