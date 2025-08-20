@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class LinkedList {
 
     Node firstNode;
@@ -10,7 +14,7 @@ public class LinkedList {
         this.firstNode = firstNode;
     }
 
-    public void InsertContact(Contacto Data){
+    public void InsertObject(Object Data){
         Node newNode = new Node(Data);
         int i = 0;
         if (this.firstNode.next == null) {
@@ -118,6 +122,17 @@ public class LinkedList {
         }
         System.out.print(Integer.parseInt(u) + Integer.parseInt(o));
     }
+
+    public int AgregarContacto(int times, String NombreContacto, String DireccionContacto, int NumeroTelefonico) throws IOException {
+        if (times == 0) {
+            setFirstNode(new Node<>(new Contacto(NombreContacto, DireccionContacto, NumeroTelefonico)));
+        } else {
+            InsertObject(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico));
+        }
+        times++;
+        return times;
+    }
+
     public void setFirstNode(Node firstNode) {
         this.firstNode = firstNode;
     }

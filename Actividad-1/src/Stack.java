@@ -35,7 +35,7 @@ public class Stack<E> {
         if (this.isEmpty()){
             throw new Exception("La Pila esta vacia");
         }
-        result = this.data[this.size];
+        result = this.data[0];
         return result;
     }
 }

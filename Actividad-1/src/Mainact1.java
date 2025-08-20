@@ -8,31 +8,7 @@ public class Mainact1 {
     static LinkedList Doble = new LinkedList();
     static LinkedList Circular = new LinkedList();
 
-    public static int AgregarContacto(int times) throws IOException {
-        try {
-            System.out.println("| Introduzca los siguientes elementos para agregar el contacto:");
-            System.out.print("| Nombre:");
-            String NombreContacto = input.readLine();
-            System.out.print("| Direccion:");
-            String DireccionContacto = input.readLine();
-            System.out.print("| Numero Telefonico:");
-            int NumeroTelefonico = Integer.parseInt(input.readLine());
-            System.out.println("*------------------------------*");
-            if (times == 0) {
-                Secuencial.setFirstNode(new Node<>(new Contacto(NombreContacto, DireccionContacto, NumeroTelefonico)));
-                Doble.setFirstNode(new Node<>(new Contacto(NombreContacto, DireccionContacto, NumeroTelefonico)));
-                Circular.setFirstNode(new Node<>(new Contacto(NombreContacto, DireccionContacto, NumeroTelefonico)));
-            } else {
-                Secuencial.InsertContact(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico));
-                Doble.InsertContact(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico));
-                Circular.InsertContact(new Contacto(NombreContacto,DireccionContacto,NumeroTelefonico));
-            }
-        } catch (Exception NumberFormatException){
-            System.out.println("El numero telefonico tiene que ser un numero no puede ser una letra");
-        }
-        times++;
-        return times;
-    }
+
     public static void EliminarContacto() throws IOException {
        System.out.print("| Intruduce el nombre del contacto al que quieres eliminar:");
        String ConNombre = input.readLine();
@@ -118,7 +94,23 @@ public class Mainact1 {
                     if (Opciones[i] == OpcionUsuario) {
                         switch (OpcionUsuario) {
                             case 1:
-                                Times = AgregarContacto(Times);
+                                try {
+                                    System.out.println("| Introduzca los siguientes elementos para agregar el contacto:");
+                                    System.out.print("| Nombre:");
+                                    String NombreContacto = input.readLine();
+                                    System.out.print("| Direccion:");
+                                    String DireccionContacto = input.readLine();
+                                    System.out.print("| Numero Telefonico:");
+                                    int NumeroTelefonico = Integer.parseInt(input.readLine());
+                                    System.out.println("*------------------------------*");
+                                    Times = Secuencial.AgregarContacto(Times, NombreContacto, DireccionContacto, NumeroTelefonico);
+                                    Times = Doble.AgregarContacto(Times, NombreContacto, DireccionContacto, NumeroTelefonico);
+                                    Times--;
+                                    Times = Circular.AgregarContacto(Times, NombreContacto, DireccionContacto, NumeroTelefonico);
+                                    Times--;
+                                } catch (Exception NumberFormatException){
+                                System.out.println("El numero telefonico tiene que ser un numero no puede ser una letra");
+                                }
                                 break;
                             case 2:
                                 EliminarContacto();
