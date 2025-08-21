@@ -29,11 +29,14 @@ public class LinkedList {
                     System.out.println("El historial de procesos esta vacio");
                 } else {
                     Node currNode = this.firstNode;
-                    while (currNode.next != null) {
-                        System.out.print(currNode.Data + " " + FlowList + " ");
+                    while (currNode != null) {
+                        System.out.print(currNode.Data);
+                        if (currNode.next != null) {
+                            System.out.print(" " + FlowList + " ");
+                        }
                         currNode = currNode.next;
                     }
-                    System.out.println(currNode.Data);
+                    System.out.println();
                 }
                 break;
             case "<--":
@@ -41,13 +44,20 @@ public class LinkedList {
                     System.out.println("El historial de commandos esta vacio");
                     return;
                 }
-                Node temp = this.firstNode;
-                while(temp.next != null){
-                    temp = temp.next;
+                Node temp = this.firstNode.tail;
+                if (temp == null) {
+                    // Fallback: find the tail manually
+                    temp = this.firstNode;
+                    while (temp.next != null) {
+                        temp = temp.next;
+                    }
                 }
-
+                
                 while (temp != null) {
-                    System.out.print(temp.Data + " " + FlowList + " ");
+                    System.out.print(temp.Data);
+                    if (temp.last != null) {
+                        System.out.print(" " + FlowList + " ");
+                    }
                     temp = temp.last;
                 }
                 System.out.println();

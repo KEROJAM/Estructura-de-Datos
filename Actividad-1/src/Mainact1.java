@@ -13,7 +13,6 @@ public class Mainact1 {
     public static void main(String[] args) throws Exception {
         boolean x = true;
         int[] Opciones = {1,2,3,4,5,6,7};
-        int Times = 0;
         while(x) {
             System.out.println("*----------* Menu *------------*");
             System.out.println("| 1.- Ejecutar Comando         |");

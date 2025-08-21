@@ -12,7 +12,7 @@ public class Stack<E> {
     
     public Stack(){
         this.commands = new LinkedList();
-        this.size = commands.ListSize;
+        this.size = 0;
     }
 
     /**
@@ -38,44 +38,38 @@ public class Stack<E> {
      */
     public void push() throws IOException {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        String Data = input.readLine();
-        Node newNode = new Node(Data);
-        int i = 0;
-        if (this.commands.firstNode == null) {
-            this.commands.firstNode = newNode;
-            this.commands.firstNode.setTail(newNode);
-            this.size++;
-        } else {
-            if (this.commands.firstNode.next == null) {
-                this.commands.firstNode.setNext(newNode);
-                newNode.setLast(this.commands.firstNode);
-                this.commands.firstNode.setTail(newNode);
-                newNode.setHead(this.commands.firstNode);
-                this.commands.firstNode.setHead(this.commands.firstNode);
-                this.size++;
-                return;
-            }
-            Node currNode = this.commands.firstNode;
-            Node lastNode = this.commands.firstNode;
-            while (currNode.next != null) {
-                currNode = currNode.next;
-                if (i == 0) {
-                    i++;
-                } else if (i == 1) {
-                    lastNode = lastNode.next;
-                    currNode.setLast(lastNode);
-                    i++;
+        System.out.println("| Para salir Introduzca exit");
+        boolean x = true;
+        while (x) {
+            System.out.print("| [usuario@computadora:~]$ ");
+            String Data = input.readLine();
+            if (Data.equalsIgnoreCase("exit")){
+                x = false;
+            } else {
+                Node newNode = new Node(Data);
+                
+                if (this.commands.firstNode == null) {
+                    // First element
+                    this.commands.firstNode = newNode;
+                    this.commands.firstNode.setTail(newNode);
                 } else {
-                    lastNode = lastNode.next;
+                    // Find the current tail (last element)
+                    Node currentTail = this.commands.firstNode.tail;
+                    if (currentTail == null) {
+                        // Fallback: traverse to find tail
+                        currentTail = this.commands.firstNode;
+                        while (currentTail.next != null) {
+                            currentTail = currentTail.next;
+                        }
+                    }
+                    
+                    // Add new node at the end (for stack, this becomes the new top)
+                    currentTail.setNext(newNode);
+                    newNode.setLast(currentTail);
+                    this.commands.firstNode.setTail(newNode);
                 }
+                this.size++;
             }
-            currNode.setNext(newNode);
-            currNode.setLast(lastNode);
-            this.commands.firstNode.setTail(newNode);
-            newNode.setLast(currNode);
-            newNode.setHead(this.commands.firstNode);
-            this.commands.firstNode.setHead(this.commands.firstNode);
-            this.size++;
         }
     }
 

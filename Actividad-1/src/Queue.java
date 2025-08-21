@@ -8,7 +8,7 @@ public class Queue<E> {
 
     public Queue() {
         this.processes = new LinkedList();
-        this.size = processes.ListSize;
+        this.size = 0;
     }
 
     /**
@@ -34,48 +34,37 @@ public class Queue<E> {
      */
     public void enqueue() throws IOException {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        String Data = input.readLine();
-        Node newNode = new Node(Data);
-        int i = 0;
-        if (this.processes.firstNode == null) {
-            this.processes.firstNode = newNode;
-            this.processes.firstNode.setTail(newNode);
-            this.size++;
-            return;
-        }
-
-        if (this.processes.firstNode.next == null) {
-            this.processes.firstNode.setNext(newNode);
-            newNode.setLast(this.processes.firstNode);
-            this.processes.firstNode.setTail(newNode);
-            newNode.setHead(this.processes.firstNode);
-            this.processes.firstNode.setHead(this.processes.firstNode);
-            this.size++;
-            return;
-        }
-
-        {
-            Node currNode = this.processes.firstNode;
-            Node lastNode = this.processes.firstNode;
-            while (currNode.next != null) {
-                currNode = currNode.next;
-                if (i == 0) {
-                    i++;
-                } else if (i == 1) {
-                    lastNode = lastNode.next;
-                    currNode.setLast(lastNode);
-                    i++;
+        boolean x = true;
+        System.out.println("| Para salir Introduzca exit");
+        while (x) {
+            System.out.print("| [usuario@computadora:~]$ ");
+            String Data = input.readLine();
+            if (Data.equalsIgnoreCase("exit")){
+                x = false;
+            } else {
+                Node newNode = new Node(Data);
+                
+                if (this.processes.firstNode == null) {
+                    this.processes.firstNode = newNode;
+                    this.processes.firstNode.setTail(newNode);
                 } else {
-                    lastNode = lastNode.next;
+                    // Find the current tail (last element)
+                    Node currentTail = this.processes.firstNode.tail;
+                    if (currentTail == null) {
+                        // Fallback: traverse to find tail
+                        currentTail = this.processes.firstNode;
+                        while (currentTail.next != null) {
+                            currentTail = currentTail.next;
+                        }
+                    }
+                    
+                    // Add new node at the end
+                    currentTail.setNext(newNode);
+                    newNode.setLast(currentTail);
+                    this.processes.firstNode.setTail(newNode);
                 }
+                this.size++;
             }
-            currNode.setNext(newNode);
-            currNode.setLast(lastNode);
-            this.processes.firstNode.setTail(newNode);
-            newNode.setLast(currNode);
-            newNode.setHead(this.processes.firstNode);
-            this.processes.firstNode.setHead(this.processes.firstNode);
-            this.size++;
         }
     }
 
